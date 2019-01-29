@@ -3,10 +3,33 @@ server:
 spring:
   application:
     name: ribbon-consumer
+    #开启失败重试,CamdenSR2及其后续版本才可以使用
+  cloud:
+      loadbalancer:
+        retry:
+          enabled:  true
 eureka:
   client:
     serviceUrl:
       defaultZone:  http://localhost:1111/eureka/
     #定期更新服务列表, 每40秒更新一次服务列表
     registry-fetch-interval-seconds: 10
+#断路器超时时间,要大于ribbon超时时间,否则重试无效
+hystrix:
+  command:
+    default:
+     execution:
+       isolation:
+         thread:
+           timeoutInMilliseconds: 10000
+#调用provider时的重试配置
+ribbon:
+    connectTimeOut:  250
+    readTimeOut:  1000
+    okToRetryOnAllOperations:  true
+    maxAutoRetriesNextServer:  2
+    maxAutoRetries:  1
+
+
+
 

@@ -71,7 +71,13 @@ public class IndexController {
      */
     @RequestMapping("/put")
     public String put(){
-        restTemplate.put("http://provider/user/{1}", String.class, "2");
+        restTemplate.put("http://provider/user/{1}", new HashMap<>(), "2");
+        return result;
+    }
+
+    @RequestMapping("delete")
+    public String delete(){
+        restTemplate.delete("http://provider/user/{1}", 2);
         return result;
     }
 }
