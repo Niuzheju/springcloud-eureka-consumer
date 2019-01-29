@@ -1,5 +1,6 @@
 package com.niuzj.ribbonconsumer.controller;
 
+import com.niuzj.ribbonconsumer.service.IHelloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -22,6 +23,9 @@ public class IndexController {
     private String url2 = "http://provider/uri";
 
     private  String result = "success";
+
+    @Autowired
+    private IHelloService helloService;
 
     /**
      * GET请求
@@ -75,9 +79,14 @@ public class IndexController {
         return result;
     }
 
-    @RequestMapping("delete")
+    @RequestMapping("/delete")
     public String delete(){
         restTemplate.delete("http://provider/user/{1}", 2);
         return result;
+    }
+
+    @RequestMapping("/hystrix")
+    public String helloService(){
+        return helloService.helloService();
     }
 }
