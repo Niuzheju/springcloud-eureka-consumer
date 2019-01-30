@@ -21,7 +21,7 @@ hystrix:
      execution:
        isolation:
          thread:
-           timeoutInMilliseconds: 10000
+           timeoutInMilliseconds: 2000
 #调用provider时的重试配置
 ribbon:
     connectTimeOut:  250
