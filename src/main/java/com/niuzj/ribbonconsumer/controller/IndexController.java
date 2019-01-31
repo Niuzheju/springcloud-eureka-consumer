@@ -85,7 +85,7 @@ public class IndexController {
         return result;
     }
 
-    @RequestMapping("/hystrix")
+    @RequestMapping("/helloservice")
     public String helloService(){
         return helloService.helloService();
     }
